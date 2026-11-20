@@ -17,10 +17,5 @@
   "turnstile_url": "https://oxalpha.com/chat",
   "turnstile_action": "chat",
   "proxy": null,
-  "request_timeout": 90,
-  "connect_timeout": 20,
-  "max_concurrent_requests": 10,
-  "rate_limit_per_minute": 60,
-  "max_retries": 3,
-  "backoff_factor": 0.5
+  "request_timeout": 90
 }
