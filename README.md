@@ -252,6 +252,9 @@ The upstream model is `z-ai/glm-5.3-flash` (Ox Alpha Stealth Reasoning). All mod
 **Why does Turnstile auto-solve sometimes fail?**  
 Camoufox needs browser binaries. Run `python -m camoufox fetch` once after install. Alternatively set `"turnstile_auto_solve": false` and point `turnstile_solver_url` to an external solver.
 
+**"Message limit reached" / 429 errors**  
+OxAlpha enforces a daily per-IP message quota (150 messages/day) upstream. Once exceeded, requests return HTTP 429 with `limit_type: messages_per_ip` until the quota resets (typically at midnight, IP-based). The proxy surfaces this as a 429 error. Workarounds: route through an HTTP proxy (`"proxy"` in `config.json` or `PROXY` env var), or wait for the daily reset. Cookie/session resets do **not** bypass this limit.
+
 **Can I expose this to the internet?**  
 Yes — set `api_key` in `config.json` so random people cannot abuse your proxy.
 
