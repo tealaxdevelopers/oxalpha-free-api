@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  oxalpha-proxy:
+    build: .
+    container_name: oxalpha-free-api
+    restart: unless-stopped
+    ports:
+      # Published on localhost only. Use "8080:8080" ONLY together with API_KEY.
+      - "127.0.0.1:8080:8080"
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+      # HOST=0.0.0.0 is needed inside the container; with no API_KEY a key is auto-generated
+      # and stored in the volume (see `docker logs oxalpha-free-api`).
+      # Set your own Bearer token:
+      # - API_KEY=your_secret_key
+      # - PROXY=http://user:pass@host:port
+      - AUTO_CONTINUE=true
+      - MAX_CONTINUATIONS=3
+      - TURNSTILE_AUTO_SOLVE=true
+    volumes:
+      - oxalpha_cache:/app/.files_cache
+
+volumes:
+  oxalpha_cache:

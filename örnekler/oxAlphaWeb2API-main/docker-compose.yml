@@ -1,0 +1,26 @@
+services:
+  oxalpha-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oxalpha-gateway
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - OXALPHA_BASE_URL=https://oxalpha.com
+      - OXALPHA_MODEL=z-ai/glm-5.3-flash
+      - GATEWAY_MODEL_NAME=oxalpha
+      - API_KEYS=
+      - UPSTREAM_TIMEOUT_SECONDS=60.0
+      - MAX_CONCURRENT_REQUESTS=10
+      - RATE_LIMIT_PER_MINUTE=30
+      - MAX_RETRIES=3
+      - BACKOFF_FACTOR=0.5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
