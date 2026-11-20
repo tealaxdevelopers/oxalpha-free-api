@@ -13,6 +13,11 @@ No registration · No login · No upstream API key required
 
 </div>
 
+## ⚠️ Important: Daily message limit (read first)
+
+> **OxAlpha enforces a daily per-IP message quota of 150 messages.** Once you hit it, requests return HTTP 429 (`limit_type: messages_per_ip`) until the quota resets (typically midnight, IP-based). Cookie/session resets do **not** bypass this. Workarounds: route through an HTTP proxy (`"proxy"` in `config.json` / `PROXY` env), or wait for the daily reset. See FAQ below.
+
+
 ---
 
 ## What is this?

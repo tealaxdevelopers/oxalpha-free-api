@@ -13,6 +13,11 @@ Kayıt yok · Giriş yok · Upstream API key gerekmez
 
 </div>
 
+## ⚠️ Önemli: Günlük mesaj limiti (önce oku)
+
+> **OxAlpha IP başına günlük 150 mesaj kotası uygular.** Kotaya ulaşınca istekler HTTP 429 (`limit_type: messages_per_ip`) döner, kota sıfırlanana kadar (genelde gece yarısı, IP bazlı) devam eder. Cookie/session sıfırlamak bu limiti aşmaz. Çözüm: HTTP proxy kullan (`config.json` → `"proxy"` veya `PROXY` env), ya da günlük sıfırlamayı bekle. Detaylar için SSS bölümüne bak.
+
+
 ---
 
 ## Bu nedir?
